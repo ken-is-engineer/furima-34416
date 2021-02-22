@@ -37,6 +37,7 @@
 
 - has_many   :comments
 - belongs_to :purchase
+- belongs_to :user
 
 ## comments テーブル
 
@@ -55,27 +56,27 @@
 
 | Column      | Type          | Options                        |
 | ----------- | ------------- | ------------------------------ |
-| card        | string        | null: false                    |
-| address     | references    | null: false, foreign_key: true |
+| user	      | references	  | null: false, foreign_key: true |
+| item	      | references    | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :item
-- belongs_to :address
+- has_one    :address
+- belongs_to :user
 
 ## Address テーブル
 
 | Column        | Type          | Options                        |
 | ------------- | ------------- | ------------------------------ |
-| post_code     | integer       | null: false                    |
-| prefecture    | string        | null: false                    |
+| post_code     | string        | null: false                    |
+| prefecture_id | integer       | null: false                    |
 | city          | string        | null: false                    |
-| address_line1 | string        | null: false                    |
-| address_line2 | string        | null: false                    |
-| phone_number  | integer       | null: false                    |
+| address_line  | string        | null: false                    |
+| building      | string        | null: false                    |
+| phone_number  | string        | null: false                    |
 
 ### Association
 
-- has_many   :purchase
-- belongs_to :user
+- belongs_to :purchase
