@@ -13,7 +13,7 @@
 | last_kana             | string         | null: false                   |
 | birthday              | date           | null: false                   |
 
-### Association
+### user Association
 
 - has_many :items
 - has_many :comments
@@ -33,10 +33,10 @@
 | price         | integer       | null: false                    |
 | user          | references    | null: false, foreign_key: true |
 
-### Association
+### item Association
 
 - has_many   :comments
-- belongs_to :purchase
+- has_one    :purchase
 - belongs_to :user
 
 ## comments テーブル
@@ -45,9 +45,9 @@
 | ----------- | ------------- | ------------------------------ |
 | content     | text          | null: false                    |
 | user        | references    | null: false, foreign_key: true |
-| prototype   | references    | null: false, foreign_key: true |
+| item        | references    | null: false, foreign_key: true |
 
-### Association
+### comment Association
 
 - belongs_to :user
 - belongs_to :item
@@ -60,13 +60,13 @@
 | item	      | references    | null: false, foreign_key: true |
 
 
-### Association
+### purchase Association
 
 - belongs_to :item
 - has_one    :address
 - belongs_to :user
 
-## Address テーブル
+## Addresses テーブル
 
 | Column        | Type          | Options                        |
 | ------------- | ------------- | ------------------------------ |
@@ -76,7 +76,8 @@
 | address_line  | string        | null: false                    |
 | building      | string        |                                |
 | phone_number  | string        | null: false                    |
+| purchase      | references    | null: false, foreign_key: true | 
 
-### Association
+### address Association
 
 - belongs_to :purchase
