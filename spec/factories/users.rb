@@ -4,7 +4,7 @@ FactoryBot.define do
       gimei                 {Gimei.name}
     end
 
-    password              {Faker::Internet.password(min_length: 6)}
+    password              { '1a' +Faker::Internet.password(min_length: 6) } #英数字を含ませるために1とaを指定
     password_confirmation {password}
     nickname              {Faker::JapaneseMedia::DragonBall.character}
     email                 {Faker::Internet.free_email}

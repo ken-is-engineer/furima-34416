@@ -70,28 +70,52 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
-      it 'Fail to register when first_name is filled with other than Japanese' do
+      it 'Fail to register when first_name is other than Japanese' do
         @user.first_name = 'aaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid")
       end
 
-      it 'Fail to register when last_name is filled with other than Japanese' do
+      it 'Fail to register when last_name is other than Japanese' do
         @user.last_name = 'aaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
 
-      it 'Fail to register when first_kana is filled with other than Japanese' do
+      it 'Fail to register when first_kana is other than Japanese' do
         @user.first_kana = 'aaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("First kana is invalid")
       end
 
-      it 'Fail to register when last_kana is filled with other than Japanese' do
+      it 'Fail to register when last_kana is other than Japanese' do
         @user.last_kana = 'aaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last kana is invalid")
+      end
+
+      it 'Fail to register when email is without "@" ' do
+        @user.email = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
+      it 'Fail to register when password is only alphabet' do
+        @user.password = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'Fail to register when password is only number' do
+        @user.password = "111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'Fail to register when password is used double-byte character' do
+        @user.password = "ｋ１１１１１"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
     end
   end
