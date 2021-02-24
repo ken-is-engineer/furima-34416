@@ -13,9 +13,7 @@ class User < ApplicationRecord
     validates :birthday
   end
 
-  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}, allow_blank: true
-
-  validates :password, format: {with: /[a-z\d]{6,}/i}, allow_blank: true
+  validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}, allow_blank: true
 
   with_options format: {with: /\A[ぁ-んァ-ン一-龥々]+\z/}, allow_blank: true do
     validates :first_name
