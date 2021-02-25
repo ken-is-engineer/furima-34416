@@ -8,7 +8,7 @@ class From < ActiveHash::Base
    { id: 6, name: '近畿' },
    { id: 7, name: '中国' },
    { id: 8, name: '四国' },
-   { id: 9, name: '九州（沖縄除く）' },
+   { id: 9, name: '九州' },
    { id: 10, name: '沖縄' }
   ]
 
