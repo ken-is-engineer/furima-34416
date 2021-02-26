@@ -7,7 +7,6 @@ require("@rails/ujs").start()
 //require("turbolinks").start() 画面遷移高速化により、JSが読み込まれないことがあるので機能OFF
 require("@rails/activestorage").start()
 require("channels")
-require("../calculate")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
