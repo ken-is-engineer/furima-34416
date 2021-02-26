@@ -3,9 +3,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create] #:show, :edit, :destroy]まだ使わない
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.all.includes(:user).order(created_at: :desc)
     #@item = Item.find(params[:id])
-    @items.includes(:user)
   end
 
   def new
