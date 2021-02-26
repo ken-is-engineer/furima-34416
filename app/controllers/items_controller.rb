@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user! only:[:new, :create] #:show, :edit, :destroy]
+  before_action :authenticate_user!, only:[:new, :create] #:show, :edit, :destroy]まだ使わない
 
   def index
-    #@items = Item.all.order(created_at: :desc)
-    #@item = Item.find(params[:id])この実装段階では使わない
-    #@items.includes(:user)
+    @items = Item.all.order(created_at: :desc)
+    #@item = Item.find(params[:id])
+    @items.includes(:user)
   end
 
   def new
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
+    #@item = Item.find(params[:id])
   end
 
   def edit
