@@ -5,7 +5,6 @@ class Item < ApplicationRecord
     validates :title
     validates :detail
     validates :price
-    validates :user
   end
 
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, allow_blank: true
@@ -18,9 +17,14 @@ class Item < ApplicationRecord
     validates :category_id
   end
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :status
+  belongs_to :fee
+  belongs_to :from
+  belongs_to :days
+  belongs_to :category
+
   has_one_attached :image
   belongs_to :user
 
-  #extend ActiveHash::Associations::ActiveRecordExtensions
-  #belongs_to_active_hash : のちのちいるかもしれない記述なのでとっておく
 end
