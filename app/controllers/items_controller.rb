@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.includes(:user).order(created_at: :desc)
-    #@item = Item.find(params[:id])
+    #@item = Item.find(params[:id])今後使う予定があると思ったので残しているだけです特に理解ていただかなくて結構です。実際の現場ではこのような個人的なメモは残すべきではないのでしょうが、勉強段階ですので残しております。
   end
 
   def new
