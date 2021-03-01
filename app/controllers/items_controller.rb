@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only:[:new, :create, :show, :edit, :update] #:destroy]まだ使わない
   before_action :item_exists?, only:[:show, :edit, :update]
+  before_action :seller?, only:[:edit, :update]
 
   def index
     @items = Item.all.includes(:user).order(created_at: :desc)
@@ -47,6 +48,12 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     else
       redirect_to root_path      
+    end
+  end
+
+  def seller?
+    unless current_user == @item.user
+      redirect_to root_path
     end
   end
 end
