@@ -25,14 +25,13 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
-      <% if current_user == @item.user %>
-        <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
+    <% if user_signed_in? %> 
+      <% if Purchase.exists?(item_id: @item.id) %>
       <% else %>
-        <%# 商品が売れていない場合のみ購入画面へのリンクを表示 %>
-        <% if Purchase.exists?(item_id: @item.id) %>
+        <% if current_user == @item.user %>
+          <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
         <% else %>
           <%= link_to "購入画面に進む", purchases_path(params[:id]) ,class:"item-red-btn"%>
         <% end %>
