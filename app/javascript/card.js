@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_17b5d838582b2c7a5364c483");
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); //initializer/webpackerの記述を経由して、環境変数を呼び出している。
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
