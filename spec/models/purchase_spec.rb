@@ -3,11 +3,20 @@ require 'rails_helper'
 RSpec.describe Form, type: :model do
   before do
     @purchase = FactoryBot.build(:form)
+    @item = FactoryBot.build(:item)
+    @user = FactoryBot.build(:user)
+    @purchase.item_id = @item.id
+    @purchase.user_id = @user.id
   end
 
   describe 'purchase an item' do
     context 'Success to purchase' do
       it 'Success to purchase when you input correctly' do
+        expect(@purchase).to be_valid
+      end
+
+      it 'Success to purchase when you input correctly (building is blank)' do
+        @purchase.building = ''
         expect(@purchase).to be_valid
       end
     end
