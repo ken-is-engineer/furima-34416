@@ -9,9 +9,11 @@
       <%= image_tag @item.image ,class:"item-box-img" %>
 
       <%# 商品が売れている場合は、sold outを表示 %>
-      <%#div class="sold-out">
-        <span>Sold Out!!</span>
-      </div %>
+      <% if Purchase.exists?(item_id: @item.id) %>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div %>
+      <% end %>
 
     </div>
     <div class="item-price-box">
@@ -29,8 +31,11 @@
         <p class="or-text">or</p>
         <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
       <% else %>
-        <%# 商品が売れていない場合 %>
-        <%= link_to "購入画面に進む", purchases_path(params[:id]) ,class:"item-red-btn"%>
+        <%# 商品が売れていない場合のみ購入画面へのリンクを表示 %>
+        <% if Purchase.exists?(item_id: @item.id) %>
+        <% else %>
+          <%= link_to "購入画面に進む", purchases_path(params[:id]) ,class:"item-red-btn"%>
+        <% end %>
       <% end %>
     <% end %>
 

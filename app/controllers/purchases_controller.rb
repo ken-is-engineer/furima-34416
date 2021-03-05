@@ -1,12 +1,16 @@
 class PurchasesController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :item_exists?
+  before_action :item_on_sale?
+  before_action :seller?
+
   def index
     @purchase = Form.new
-    @item = Item.find(params[:id])
   end
 
   def create
     @purchase = Form.new(purchase_params)
-    @item = Item.find(params[:id])
     if @purchase.valid?
       @purchase.save
       pay_jp_send
@@ -21,6 +25,27 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.require(:form).permit(:post_code, :prefecture_id, :city, :address_line, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:id], token: params[:token])
+  end
+
+  def item_exists?
+    if Item.exists?(params[:id])
+      @item = Item.find(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
+
+  def item_on_sale?
+    if Purchase.exists?(item_id: params[:id])
+    else
+      redirect_to root_path
+    end
+  end
+
+  def seller?
+    unless current_user == @item.user
+      redirect_to root_path
+    end
   end
 
   def pay_jp_send
