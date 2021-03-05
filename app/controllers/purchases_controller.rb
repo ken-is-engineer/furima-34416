@@ -37,13 +37,13 @@ class PurchasesController < ApplicationController
 
   def item_on_sale?
     if Purchase.exists?(item_id: params[:id])
-    else
       redirect_to root_path
+    else
     end
   end
 
   def seller?
-    unless current_user == @item.user
+    if current_user == @item.user
       redirect_to root_path
     end
   end
