@@ -25,5 +25,6 @@ class User < ApplicationRecord
     validates :last_kana
   end
 
-  has_many :items
+  has_many :items, dependent: :destroy
+  has_many :purchases
 end
