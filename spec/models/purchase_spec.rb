@@ -5,6 +5,7 @@ RSpec.describe Form, type: :model do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
     @purchase = FactoryBot.build(:form , user_id: @user.id, item_id: @item.id)
+    sleep 0.1
   end
 
   describe 'purchase an item' do
@@ -63,7 +64,7 @@ RSpec.describe Form, type: :model do
       it 'Fail to purchase when phone_number is more than 11 words' do
         @purchase.phone_number = '000111122223'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
     end
   end
