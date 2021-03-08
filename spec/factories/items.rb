@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    id                {rand(1..100)}
+
     title             {Faker::JapaneseMedia::DragonBall.character}
     detail            {Faker::JapaneseMedia::DragonBall.race}
     price             {rand(300..9999999)}

@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Form, type: :model do
   before do
-    @purchase = FactoryBot.build(:form)
-    @item = FactoryBot.build(:item)
-    @user = FactoryBot.build(:user)
-    @purchase.item_id = @item.id
-    @purchase.user_id = @user.id
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @purchase = FactoryBot.build(:form , user_id: @user.id, item_id: @item.id)
   end
 
   describe 'purchase an item' do
@@ -59,6 +57,11 @@ RSpec.describe Form, type: :model do
       end
       it 'Fail to purchase when phone_number is not number' do
         @purchase.phone_number = '000-9999-88'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'Fail to purchase when phone_number is more than 11 words' do
+        @purchase.phone_number = '000111122223'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone number is invalid")
       end
