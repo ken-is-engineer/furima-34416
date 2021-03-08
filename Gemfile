@@ -65,5 +65,6 @@ gem 'faker'
 gem 'gimei'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
-gem 'active_hash'
+gem 'active_hash' #プルダウンで項目選択可能にする記述を簡単にできるGem
 gem 'payjp'
+gem "aws-sdk-s3", require: false #s3を利用するのに必要なGem
