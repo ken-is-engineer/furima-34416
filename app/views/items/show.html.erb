@@ -75,7 +75,7 @@
         <span>
           <% if current_user == @item.user %>
           <% else %>
-            <% if Favorite.where(item_id: params[:id], user_id: current_user.id).exists? %>
+            <% if user_signed_in? && Favorite.where(item_id: params[:id], user_id: current_user.id).exists? %>
               <%= button_to '取り消し', favorite_path(@item), method: :delete %>
             <% else %>
               <%= button_to '欲しい', favorites_path %>
