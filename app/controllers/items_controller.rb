@@ -23,8 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #PV数をカウントするための記述
-    #impressionist(@item, nil, unique: [:session_hash])
+
   end
 
   def edit

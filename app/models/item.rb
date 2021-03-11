@@ -20,6 +20,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_one    :purchase
+  has_many   :favorites
 
     #impressionaitの機能を使うための記述
     is_impressionable
