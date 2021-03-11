@@ -21,6 +21,9 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one    :purchase
 
+    #impressionaitの機能を使うための記述
+    is_impressionable
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
   belongs_to :fee

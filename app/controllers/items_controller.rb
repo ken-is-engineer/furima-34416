@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  impressionist actions: [:show]
   before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
   before_action :item_exists?, only:[:show, :edit, :update, :destroy]
   before_action :seller?, only:[:edit, :update, :destroy]
@@ -23,7 +23,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-
+    #PV数をカウントするための記述
+    #impressionist(@item, nil, unique: [:session_hash])
   end
 
   def edit
