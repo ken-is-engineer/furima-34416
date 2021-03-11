@@ -1,0 +1,13 @@
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>お気に入り商品</h2>
+    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+      <% if Item.count > 0 %>
+        <%= render partial:"items/item", collection: @items %>
+      <% else %>
+        <%= "お気に入りの商品はありません" %>
+      <% end %>
+    </ul>
+  </div>
+  <%# /商品一覧 %>

@@ -81,3 +81,18 @@
 ### address Association
 
 - belongs_to :purchase
+
+
+## favorites テーブル
+
+| Column      | Type          | Options                        |
+| ----------- | ------------- | ------------------------------ |
+| user	      | references	  | null: false, foreign_key: true |
+| item	      | references    | null: false, foreign_key: true |
+
+
+### purchase Association
+
+- belongs_to :item
+- has_one    :address
+- belongs_to :user

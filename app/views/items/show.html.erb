@@ -71,8 +71,17 @@
     </table>
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%><%= Favorite.where(item_id: @item.id).count %>
+        <span>
+          <% if current_user == @item.user %>
+          <% else %>
+            <% if current_user.favorites.exists?(item_id: @item) %>
+              <%= button_to '取り消し', favorite_path(@item), method: :delete %>
+            <% else %>
+              <%= button_to '欲しい', favorites_path %>
+            <% end %>
+          <% end %>
+      </span>
       </div>
       <div class="report-btn">
         <%= image_tag "watch.png" ,class:"watch-count-icon" ,width:"20",height:"20"%>

@@ -1,0 +1,26 @@
+<%= render "shared/header" %>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">ニックネーム</th>
+          <td class="detail-value"><%= @user.nickname %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">登録メールアドレス</th>
+          <td class="detail-value"><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">出品数</th>
+          <td class="detail-value"><%= Item.where(user_id: @user.id).count %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">お気に入り数</th>
+          <td class="detail-value"><%= 0 %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">購入検討中の商品数</th>
+          <td class="detail-value"><%= 0 %></td>
+        </tr>
+      </tbody>
+    </table>
+<%= render "shared/footer" %>
