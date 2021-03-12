@@ -1,9 +1,9 @@
+<%= render "shared/header" %>
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>お気に入り商品</h2>
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-      <% if Item.count > 0 %>
+      <% if Favorite.where(item_id: params[:id], user_id: current_user.id).exists? %>
         <%= render partial:"items/item", collection: @items %>
       <% else %>
         <%= "お気に入りの商品はありません" %>
@@ -11,3 +11,4 @@
     </ul>
   </div>
   <%# /商品一覧 %>
+  <%= render "shared/footer" %>

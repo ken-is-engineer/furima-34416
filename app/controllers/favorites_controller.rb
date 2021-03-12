@@ -4,7 +4,8 @@ class FavoritesController < ApplicationController
   before_action :seller?
 
   def index
-    @favorites = Favorite.where(user_id: current_user.id)
+    favorites = Favorite.where(user_id: current_user.id).pluck(:item_id)
+    @items = Item.where(id: favorites).all
   end
 
   def create
