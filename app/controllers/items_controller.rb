@@ -10,16 +10,22 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = ItemForm.new
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = ItemForm.new(item_params)
     if @item.save
       redirect_to root_path
     else
       render :new
     end
+  end
+
+  def search
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
   end
 
   def show
@@ -45,7 +51,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:image, :title, :detail, :status_id, :fee_id, :from_id, :days_id, :category_id, :price).merge(user_id: current_user.id)
+    params.require(:item_form).permit(:image, :title, :detail, :status_id, :fee_id, :from_id, :days_id, :category_id, :price, :name).merge(user_id: current_user.id)
   end
 
   def item_exists?
