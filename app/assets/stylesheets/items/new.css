@@ -96,6 +96,7 @@
   padding: 2vh 0;
 }
 
+.input-tag,
 .items-text {
   width: 100%;
   padding: 16px 16px 8px;
@@ -105,8 +106,15 @@
   resize: none;
 }
 
+.items-tag,
 .items-explain {
   margin-top: 2vh;
+}
+
+.child{
+  border-bottom:#666 1px solid;
+  margin: 10px 0;
+  padding-left: 11px;
 }
 
 /* /商品名と商品説明 */
