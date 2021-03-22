@@ -5,13 +5,11 @@ Rails.application.routes.draw do
   resources :items do
     member do
       resources :purchases, only: [:index, :create]
-      resources :favorites, only: [:index, :create, :destroy]
+      resources :favorites, only: [:create, :destroy]
     end
   end
 
   resources :users, only: :show do
-    #member do
-      #resources :favorites, only: :index
-    #end
+    resources :favorites, only: :index
   end
 end

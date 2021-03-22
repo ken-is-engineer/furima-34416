@@ -15,7 +15,7 @@
         </tr>
         <tr>
           <th class="detail-item">お気に入り数</th>
-          <td class="detail-value"><%= link_to "#{Favorite.where(user_id: current_user.id).count} ：お気に入り商品一覧を確認する", favorites_path, method: :get %></td>
+          <td class="detail-value"><%= link_to "#{Favorite.where(user_id: current_user.id).count} ：お気に入り商品一覧を確認する", user_favorites_path(current_user.id), method: :get %></td>
         </tr>
         <tr>
           <th class="detail-item">購入検討中の商品数</th>

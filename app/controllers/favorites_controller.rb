@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :item_exists?
-  before_action :seller?
+  before_action :item_exists?, only:[:create, :destroy]
+  before_action :seller?, only:[:create, :destroy]
 
   def index
     favorites = Favorite.where(user_id: current_user.id).pluck(:item_id)
